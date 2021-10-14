@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useContext } from 'react';
+import AddForm from './components/AddForm';
+import ColorItem from './components/ColorItem';
+import Filter from './components/Filter';
+import { ColorContext } from './contexts/ColorContext';
 import './App.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const { colors } = useContext(ColorContext);
+
+    return (
+        <div className="app">
+            <div className="container">
+                <div>
+                    <AddForm/>
+                    <Filter/>
+                </div>
+
+                <div className="content">
+                    { colors.map((item: Color, index: number) => (
+                        <ColorItem
+                            key={index}
+                            color={item.name}
+                            removeable={item.removeable}
+                        />
+                    ))}
+                </div>
+
+            </div>
+        </div>
+    );
 }
 
 export default App;
