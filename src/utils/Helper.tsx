@@ -1,7 +1,7 @@
 /*
  * Covert hex color to rgb
  */
-export const hexToRgb = (hex: string) => {
+export const hexToRgb = (hex: string): rgb|null => {
     let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
     return result
@@ -16,7 +16,7 @@ export const hexToRgb = (hex: string) => {
 /*
  * Compare color object by rgb
  */
-export const compareColor = (a: Color, b: Color) => {
+export const compareColor = (a: Color, b: Color): number => {
     if ( a.red < b.red ){
         return 1;
     } else if ( a.red > b.red ){
@@ -31,4 +31,8 @@ export const compareColor = (a: Color, b: Color) => {
         return -1;
     }
     return 0;
+}
+
+export const isHex = (hex: string): boolean => {
+    return /^#[0-9A-F]{6}$/i.test(hex);
 }

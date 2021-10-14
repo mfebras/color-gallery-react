@@ -44,6 +44,7 @@ const ColorProvider: FC<Props> = ({ children }): any => {
 	const [colors, setColors] = useState<Color[]>(data);
 
 	const saveColor = (hex: string) => {
+		hex = hex.toUpperCase();
 		let temp: rgb|null = hexToRgb(hex);
 		if (temp) {
 			const newColor: Color = {

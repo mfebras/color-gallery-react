@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ColorContext } from '../contexts/ColorContext';
+import { isHex } from '../utils/Helper';
 
 const AddForm = () => {
-    const [color, setColor] = useState<string>();
+    const { saveColor } = useContext(ColorContext);
+    const [color, setColor] = useState<string>('');
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (isHex(color)) {
+            saveColor(color);
+        }
     }
 
     return (
